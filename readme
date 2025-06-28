@@ -1,13 +1,7 @@
-carte-stations/
-├── backend/
-│   ├── server.js
-│   ├── routes/stations.js
-│   ├── db/
-│   │   └── connect.js
-├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   ├── app.js
-├── database/
-│   └── import_stations.sql
-├── README.md
+cd frontend
+python -m http.server
+
+npm install
+
+cd backend
+node server.js

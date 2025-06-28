@@ -1,6 +1,6 @@
 class StationAPI {
     constructor() {
-        this.baseURL = '/api/stations';
+        this.baseURL = 'http://localhost:3000/api/stations';
     }
 
     async getAllStations() {
