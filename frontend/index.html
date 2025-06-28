@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Carte Stations-service</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <button class="toggle-btn" onclick="toggleFilters()">☰ Filtres</button>
+    
+    <div class="filters-panel" id="filtersPanel">
+        <div class="filters-header">
+            Filtres
+            <button class="close-btn" onclick="toggleFilters()">×</button>
+        </div>
+
+        <!-- Filtre par nom de station -->
+        <div class="filter-section">
+            <div class="filter-title search">Rechercher une station</div>
+            <input 
+                type="text" 
+                class="search-input" 
+                id="stationSearch" 
+                placeholder="Tapez le nom de la station..."
+                oninput="filterByStationName()"
+            >
+        </div>
+
+        <!-- Services & Commodités -->
+        <div class="filter-section">
+            <div class="filter-title services">Services & Commodités</div>
+            
+            <div class="filter-option">
+                <input type="checkbox" id="gonflage" onchange="applyFilters()">
+                <label for="gonflage">Gonflage</label>
+            </div>
+            
+            <div class="filter-option">
+                <input type="checkbox" id="remplacement-gaz" onchange="applyFilters()">
+                <label for="remplacement-gaz">Remplacement de bouteilles de gaz Propane</label>
+            </div>
+            
+            <div class="filter-option">
+                <input type="checkbox" id="lavage" onchange="applyFilters()">
+                <label for="lavage">Lavage</label>
+            </div>
+            
+            <div class="filter-option">
+                <input type="checkbox" id="alimentation" onchange="applyFilters()">
+                <label for="alimentation">Alimentation</label>
+            </div>
+            
+            <div class="filter-option">
+                <input type="checkbox" id="carte-carburant" onchange="applyFilters()">
+                <label for="carte-carburant">Carte Carburant</label>
+            </div>
+            
+            <a href="#" class="plus-link">Plus</a>
+        </div>
+
+        <!-- Type de carburant -->
+        <div class="filter-section">
+            <div class="filter-title fuel">Type de carburant</div>
+            
+            <div class="filter-option">
+                <input type="checkbox" id="shell-super-extra" checked onchange="applyFilters()">
+                <label for="shell-super-extra">Shell Super Extra</label>
+            </div>
+            
+            <div class="filter-option">
+                <input type="checkbox" id="shell-diesel" checked onchange="applyFilters()">
+                <label for="shell-diesel">Shell Diesel</label>
+            </div>
+        </div>
+
+        <!-- Actuellement ouvert -->
+        <div class="filter-section">
+            <div class="filter-title hours">Actuellement ouvert</div>
+            
+            <div class="filter-option">
+                <input type="checkbox" id="actuellement-ouvert" onchange="applyFilters()">
+                <label for="actuellement-ouvert">Actuellement ouvert</label>
+            </div>
+            
+            <div class="filter-option">
+                <input type="checkbox" id="shop" onchange="applyFilters()">
+                <label for="shop">Shop</label>
+            </div>
+            
+            <div class="filter-option">
+                <input type="checkbox" id="forecourt" onchange="applyFilters()">
+                <label for="forecourt">Forecourt</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="js/app.js"></script>
+
+    <!-- API Google Maps -->
+    <script
+        src="https://cdn.jsdelivr.net/gh/somanchiu/Keyless-Google-Maps-API@v7.0/mapsJavaScriptAPI.js" 
+        async defer>
+    </script>
+</body>
+</html>
