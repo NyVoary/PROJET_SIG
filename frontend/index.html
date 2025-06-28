@@ -57,7 +57,6 @@
                 <label for="carte-carburant">Carte Carburant</label>
             </div>
             
-            <a href="#" class="plus-link">Plus</a>
         </div>
 
         <!-- Type de carburant -->
@@ -65,13 +64,13 @@
             <div class="filter-title fuel">Type de carburant</div>
             
             <div class="filter-option">
-                <input type="checkbox" id="shell-super-extra" checked onchange="applyFilters()">
-                <label for="shell-super-extra">Shell Super Extra</label>
+                <input type="checkbox" id="super-extra" checked onchange="applyFilters()">
+                <label for="super-extra"> Super Extra</label>
             </div>
             
             <div class="filter-option">
-                <input type="checkbox" id="shell-diesel" checked onchange="applyFilters()">
-                <label for="shell-diesel">Shell Diesel</label>
+                <input type="checkbox" id="diesel" checked onchange="applyFilters()">
+                <label for="diesel"> Diesel</label>
             </div>
         </div>
 
@@ -98,7 +97,7 @@
 
     <div id="map"></div>
 
-    <script src="js/app.js"></script>
+    <script type="module" src="js/app.js"></script>
 
     <!-- API Google Maps -->
     <script
