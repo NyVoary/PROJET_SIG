@@ -1,6 +1,7 @@
 class StationAPI {
     constructor() {
-        this.baseURL = '/api/stations';
+        // URL complète vers le backend
+        this.baseURL = 'http://localhost:3000/api/stations';
     }
 
     async getAllStations() {
@@ -16,7 +17,19 @@ class StationAPI {
 
     async searchStations(filters) {
         try {
-            const params = new URLSearchParams(filters);
+            // Convertir les filtres en URLSearchParams
+            const params = new URLSearchParams();
+            
+            // Gérer les filtres qui sont des tableaux
+            Object.keys(filters).forEach(key => {
+                if (Array.isArray(filters[key])) {
+                    // Pour les tableaux, les joindre avec des virgules
+                    params.append(key, filters[key].join(','));
+                } else {
+                    params.append(key, filters[key]);
+                }
+            });
+
             const response = await fetch(`${this.baseURL}/search?${params}`);
             const data = await response.json();
             return data.success ? data.data : [];
@@ -34,6 +47,28 @@ class StationAPI {
         } catch (error) {
             console.error('Erreur API getAvailableFilters:', error);
             return {};
+        }
+    }
+
+    async getStationById(id) {
+        try {
+            const response = await fetch(`${this.baseURL}/${id}`);
+            const data = await response.json();
+            return data.success ? data.data : null;
+        } catch (error) {
+            console.error('Erreur API getStationById:', error);
+            return null;
+        }
+    }
+
+    async getItinerary() {
+        try {
+            const response = await fetch('http://localhost:3000/api/itinerary');
+            const data = await response.json();
+            return data.success ? data.data : null;
+        } catch (error) {
+            console.error('Erreur API getItinerary:', error);
+            return null;
         }
     }
 }
