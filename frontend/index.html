@@ -1,80 +1,73 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Carte Stations-service</title>
-    <meta name="viewport" content="initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <!-- Nouveau bouton pour la route -->
-    <div class="filters-panel" id="filtersPanel">
-      <button class="route-btn" id="routeToggleBtn">Afficher Route</button>
-
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carte Stations-service</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="panel-visible">
+  <div class="container">    
+    <aside class="panel">
       <div class="filters-header">
-        Filtres
-        <button class="close-btn" onclick="toggleFilters()">×</button>
+        <div class="filters-title">Filtres et Options</div>
+        <button class="close-btn" id="closePanelBtn" onclick="toggleFilters()">×</button>
       </div>
-
-      <!-- Nouvelle section pour la route -->
+      
       <div class="filter-section">
-        <div class="filter-title route">Route</div>
-        <div class="filter-option">
-          <!-- <input type="checkbox" id="show-route" checked /> -->
-          <label for="show-route"
-            >Afficher la route Andoharanofotsy - Analakely</label
-          >
-        </div>
-        <div
-          style="margin-top: 8px; font-size: 12px; color: #666"
-          id="routeInfo"
-        >
-          Chargement des informations de la route...
-        </div>
+        <div class="filter-title">Affichage de la route</div>
+        <button id="routeToggleBtn" class="toggle-btn">
+          <span id="routeIcon">✓</span>
+          <span id="routeText">Masquer la Route</span>
+        </button>
       </div>
-
-      <!-- Filtre par nom de station -->
+      
+      <div class="route-info">
+      <div id="routeInfo">
+        <!-- Le contenu sera injecté ici par updateRouteInfo -->
+      </div>
+      
       <div class="filter-section">
-        <div class="filter-title search">Rechercher une station</div>
-        <input
-          type="text"
-          class="search-input"
-          id="stationSearch"
-          placeholder="Tapez le nom de la station..."
+        <div class="filter-title">Chercher une station</div>
+        <input 
+          type="text" 
+          class="search-input" 
+          id="stationSearch" 
+          placeholder="Entrez le nom d'une station..."
         />
       </div>
-
-      <!-- Opérateurs -->
+      
       <div class="filter-section">
-        <div class="filter-title operator">Opérateurs</div>
-
-        <div class="filter-option">
-          <input type="checkbox" id="operator-Jovena" />
-          <label for="operator-Jovena">Jovena</label>
+        <div class="filter-title">Opérateurs</div>
+        <div class="operator-list">
+          <div class="filter-option">
+            <input type="checkbox" id="operator-Jovena">
+            <label for="operator-Jovena">Jovena</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" id="operator-Galana">
+            <label for="operator-Galana">Galana</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" id="operator-Total">
+            <label for="operator-Total">Total</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" id="operator-Shell">
+            <label for="operator-Shell">Shell</label>
+          </div>
         </div>
+      </div>
+    </aside>
+    
+    <main class="map-container">
+      <div id="map"></div>
+    </main>
+  </div>
+        
+      <script type="module" src="js/app.js"></script>
 
-        <div class="filter-option">
-          <input type="checkbox" id="operator-Galana" />
-          <label for="operator-Galana">Galana</label>
-        </div>
-
-        <div class="filter-option">
-          <input type="checkbox" id="operator-Total" />
-          <label for="operator-Total">Total</label>
-        </div>
-
-        <div class="filter-option">
-          <input type="checkbox" id="operator-Shell" />
-          <label for="operator-Shell">Shell</label>
-        </div>
-      </div>      
-    </div>
-
-    <div id="map"></div>
-
-    <script type="module" src="js/app.js"></script>
-
-    <script>
+      <script>
       document.addEventListener("DOMContentLoaded", () => {
         const routeBtn = document.getElementById("routeToggleBtn");
 
@@ -93,12 +86,16 @@
               window.app.toggleRouteDisplay(routeVisible);
 
               // UI update
-              routeBtn.textContent = routeVisible
-                ? "Masquer Route"
-                : "Afficher Route";
-              routeBtn.style.backgroundColor = routeVisible
-                ? "#f44336"
-                : "#4CAF50";
+              if (routeVisible) {
+                routeToggleBtn.classList.remove('route-active');
+                routeIcon.textContent = '✓';
+                routeText.textContent = 'Masquer la Route';
+              } else {
+                routeToggleBtn.classList.add('route-active');
+                routeIcon.textContent = '✕';
+                routeText.textContent = 'Afficher la Route';
+              }
+
               const checkbox = document.getElementById("show-route");
               if (checkbox) checkbox.checked = routeVisible;
             });
@@ -151,14 +148,15 @@
 
         // Mettre à jour l'interface
         if (routeVisible) {
-          btn.textContent = "Masquer Route";
-          btn.style.backgroundColor = "#f44336";
+          btn.textContent = "Masquer la Route";
+          btn.classList.remove("route-active");
           if (checkbox) checkbox.checked = true;
         } else {
-          btn.textContent = "Afficher Route";
-          btn.style.backgroundColor = "#4CAF50";
+          btn.textContent = "Afficher la Route";
+          btn.classList.add("route-active");
           if (checkbox) checkbox.checked = false;
         }
+
 
         // Appeler la méthode de l'app
         if (window.app) {
@@ -170,5 +168,5 @@
         console.log("État après toggle:", routeVisible);
       }
     </script>
-  </body>
+</body>
 </html>

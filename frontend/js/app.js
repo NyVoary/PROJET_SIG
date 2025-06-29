@@ -40,16 +40,6 @@ class App {
     if (routeCheckbox) {
       routeCheckbox.checked = this.routeVisible;
     }
-
-    if (routeBtn) {
-      if (this.routeVisible) {
-        routeBtn.textContent = "🗺️ Masquer Route";
-        routeBtn.style.backgroundColor = "#f44336";
-      } else {
-        routeBtn.textContent = "🗺️ Afficher Route";
-        routeBtn.style.backgroundColor = "#4CAF50";
-      }
-    }
   }
 
   async loadRoute() {
