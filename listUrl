@@ -1,7 +1,0 @@
-Phase 1 - MVP (Essentiel)
-
-GET /api/stations ✅
-GET /api/stations/search ✅
-GET /api/stations/filters ✅
-GET /api/stations/:id 
-
