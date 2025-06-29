@@ -9,7 +9,7 @@ DB_CONFIG = {
     "host": "localhost",
     "database": "stations_service",     # ⇦ Remplace par le nom de ta base
     "user": "postgres",         # ⇦ Remplace par ton user PostgreSQL
-    "password": "steve",    # ⇦ Ton mot de passe PostgreSQL
+    "password": "",    # ⇦ Ton mot de passe PostgreSQL
     "port": 5432
 }
 

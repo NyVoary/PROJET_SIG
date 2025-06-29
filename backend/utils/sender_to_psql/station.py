@@ -41,7 +41,7 @@ if __name__ == "__main__":
         "host": "localhost",
         "dbname": "stations_service",
         "user": "postgres",
-        "password": "steve",
+        "password": "",
         "port": 5432
     }
     csv_path = 'stations.csv'
