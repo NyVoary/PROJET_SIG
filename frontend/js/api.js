@@ -17,7 +17,19 @@ class StationAPI {
 
     async searchStations(filters) {
         try {
-            const params = new URLSearchParams(filters);
+            // Convertir les filtres en URLSearchParams
+            const params = new URLSearchParams();
+            
+            // Gérer les filtres qui sont des tableaux
+            Object.keys(filters).forEach(key => {
+                if (Array.isArray(filters[key])) {
+                    // Pour les tableaux, les joindre avec des virgules
+                    params.append(key, filters[key].join(','));
+                } else {
+                    params.append(key, filters[key]);
+                }
+            });
+
             const response = await fetch(`${this.baseURL}/search?${params}`);
             const data = await response.json();
             return data.success ? data.data : [];
