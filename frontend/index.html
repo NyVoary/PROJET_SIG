@@ -128,13 +128,6 @@
         panel.classList.toggle("hidden");
       }
 
-      function clearAllFilters() {
-        // Cette fonction sera connectée au FilterManager via les modules
-        if (window.filterManager) {
-          window.filterManager.clearAllFilters();
-        }
-      }
-
       function testRoute() {
         console.log("Test de la route...");
         if (window.app) {
