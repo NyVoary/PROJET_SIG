@@ -28,8 +28,6 @@ This project is a full-stack web application for visualizing gas stations and a 
 
 ## Project Structure
 
-```
-
 readme
 backend/
 .env.example
@@ -53,8 +51,6 @@ api.js
 app.js
 filters.js
 map.js
-
-````
 
 ---
 
