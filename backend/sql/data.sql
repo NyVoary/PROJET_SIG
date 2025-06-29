@@ -26,6 +26,17 @@ CREATE TABLE route (
     longitude DOUBLE PRECISION
 );
 
+-- Étape 1 : Ajouter une colonne de type geometry avec le bon SRID
+ALTER TABLE route ADD COLUMN geom geometry(Point, 4326);
+
+-- Étape 2 : Remplir la colonne avec les coordonnées existantes
+UPDATE route
+SET geom = ST_SetSRID(ST_MakePoint(longitude, latitude), 4326);
+
+-- Étape 3 : Optionnel : ajouter un index spatial
+CREATE INDEX idx_route_geom ON route USING GIST (geom);
+
+
 INSERT INTO stations (osm_id, amenity, brand, name, name_en, operator, shop, latitude, longitude) VALUES ('node/614389229', 'fuel', 'Total', 'Manja', 'Total MANJA', 'Total', 'kiosk', -18.9120706, 47.5179075);
 INSERT INTO stations (osm_id, amenity, brand, name, name_en, operator, shop, latitude, longitude) VALUES ('node/614403707', 'fuel', 'Total', 'Isoanifanaovana', '', 'Total', 'kiosk', -18.9067212, 47.5118894);
 INSERT INTO stations (osm_id, amenity, brand, name, name_en, operator, shop, latitude, longitude) VALUES ('node/614403710', 'fuel', 'Galana', 'Valiha', '', 'Galana', 'kiosk', -18.9073071, 47.5129964);
