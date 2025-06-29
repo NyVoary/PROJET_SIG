@@ -1,5 +1,5 @@
 CREATE DATABASE stations_service;
-USE DATABASE stations_service;
+\c stations_service;
 CREATE EXTENSION postgis;
 CREATE EXTENSION postgis_topology;
 
