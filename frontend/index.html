@@ -11,7 +11,7 @@
 
     <!-- Nouveau bouton pour la route -->
     <div class="filters-panel" id="filtersPanel">
-      <button class="route-btn" id="routeToggleBtn">🗺️ Afficher Route</button>
+      <button class="route-btn" id="routeToggleBtn">Afficher Route</button>
 
       <div class="filters-header">
         Filtres
@@ -70,59 +70,6 @@
           <label for="operator-Shell">Shell</label>
         </div>
       </div>
-
-      <!-- Services -->
-      <div class="filter-section">
-        <div class="filter-title services">Services</div>
-
-        <div class="filter-option">
-          <input type="checkbox" id="service-service_station" />
-          <label for="service-service_station">Station-service</label>
-        </div>
-      </div>
-
-      <!-- Type de carburant -->
-      <div class="filter-section">
-        <div class="filter-title fuel">Type de carburant</div>
-
-        <div class="filter-option">
-          <input type="checkbox" id="fuel-essence" />
-          <label for="fuel-essence">Essence</label>
-        </div>
-
-        <div class="filter-option">
-          <input type="checkbox" id="fuel-gasoil" />
-          <label for="fuel-gasoil">Gasoil</label>
-        </div>
-      </div>
-
-      <!-- Horaires -->
-      <div class="filter-section">
-        <div class="filter-title hours">Horaires</div>
-
-        <div class="filter-option">
-          <input type="checkbox" id="hour-6h-22h" />
-          <label for="hour-6h-22h">6h-22h</label>
-        </div>
-      </div>
-
-      <!-- Bouton pour effacer tous les filtres -->
-      <div class="filter-section">
-        <button
-          id="clearFilters"
-          onclick="clearAllFilters()"
-          style="
-            width: 100%;
-            padding: 10px;
-            background: #f44336;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-          "
-        >
-          Effacer tous les filtres
-        </button>
       </div>
     </div>
 
@@ -150,8 +97,8 @@
 
               // UI update
               routeBtn.textContent = routeVisible
-                ? "🗺️ Masquer Route"
-                : "🗺️ Afficher Route";
+                ? "Masquer Route"
+                : "Afficher Route";
               routeBtn.style.backgroundColor = routeVisible
                 ? "#f44336"
                 : "#4CAF50";
@@ -214,11 +161,11 @@
 
         // Mettre à jour l'interface
         if (routeVisible) {
-          btn.textContent = "🗺️ Masquer Route";
+          btn.textContent = "Masquer Route";
           btn.style.backgroundColor = "#f44336";
           if (checkbox) checkbox.checked = true;
         } else {
-          btn.textContent = "🗺️ Afficher Route";
+          btn.textContent = "Afficher Route";
           btn.style.backgroundColor = "#4CAF50";
           if (checkbox) checkbox.checked = false;
         }

@@ -88,19 +88,6 @@ class FilterManager {
     getActiveFilters() {
         return { ...this.activeFilters };
     }
-
-    clearAllFilters() {
-        this.activeFilters = {};
-        // Reset UI
-        const searchInput = document.getElementById('stationSearch');
-        if (searchInput) {
-            searchInput.value = '';
-        }
-        document.querySelectorAll('.filter-option input[type="checkbox"]').forEach(cb => {
-            cb.checked = false;
-        });
-        this.applyFilters();
-    }
 }
 
 export default new FilterManager();
