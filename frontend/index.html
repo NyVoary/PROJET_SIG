@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <button class="toggle-btn" onclick="toggleFilters()">☰ Filtres</button>
-
     <!-- Nouveau bouton pour la route -->
     <div class="filters-panel" id="filtersPanel">
       <button class="route-btn" id="routeToggleBtn">Afficher Route</button>
@@ -22,7 +20,7 @@
       <div class="filter-section">
         <div class="filter-title route">Route</div>
         <div class="filter-option">
-          <input type="checkbox" id="show-route" checked />
+          <!-- <input type="checkbox" id="show-route" checked /> -->
           <label for="show-route"
             >Afficher la route Andoharanofotsy - Analakely</label
           >
@@ -69,8 +67,7 @@
           <input type="checkbox" id="operator-Shell" />
           <label for="operator-Shell">Shell</label>
         </div>
-      </div>
-      </div>
+      </div>      
     </div>
 
     <div id="map"></div>
@@ -173,5 +170,38 @@
         console.log("État après toggle:", routeVisible);
       }
     </script>
+
+    <style>
+      .route-btn {
+        position: fixed;
+        top: 100px;
+        left: 10px;
+        z-index: 1000;
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .route-btn:hover {
+        background: #45a049;
+      }
+
+      .filter-title.route::before {
+        content: "🗺️";
+        margin-right: 8px;
+      }
+
+      #routeInfo {
+        background: #f5f5f5;
+        padding: 8px;
+        border-radius: 4px;
+        margin-top: 8px;
+      }
+    </style>
   </body>
 </html>
