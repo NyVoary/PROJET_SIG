@@ -64,7 +64,6 @@ INSERT INTO stations (osm_id, amenity, brand, name, name_en, operator, shop, lat
 INSERT INTO stations (osm_id, amenity, brand, name, name_en, operator, shop, latitude, longitude) VALUES ('node/10946861903', 'fuel', '', 'Total Ankadimbahoaka', '', '', '', -18.948207, 47.5285453);
 INSERT INTO stations (osm_id, amenity, brand, name, name_en, operator, shop, latitude, longitude) VALUES ('node/11422760670', 'fuel', '', 'Shell Anosizato', 'Shell Anosizato', '', '', -18.945717, 47.512467);
 
-INSERT INTO route (addr_city, highway, oneway, ref, latitude, longitude) VALUES ('addr_city', 'highway', 'oneway', 'ref', latitude, longitude);
 INSERT INTO route (addr_city, highway, oneway, ref, latitude, longitude) VALUES ('', 'way/27362008', 'primary', 'yes', -18.9233936, 47.520437);
 INSERT INTO route (addr_city, highway, oneway, ref, latitude, longitude) VALUES ('', 'way/27362040', 'primary', 'yes', -18.9455698, 47.5247849);
 INSERT INTO route (addr_city, highway, oneway, ref, latitude, longitude) VALUES ('', 'way/27362109', 'primary', 'yes', -18.9406596, 47.5225454);
