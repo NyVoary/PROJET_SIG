@@ -1,108 +1,270 @@
 <!DOCTYPE html>
-
 <html>
-<head>
+  <head>
     <title>Carte Stations-service</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <meta name="viewport" content="initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <button class="toggle-btn" onclick="toggleFilters()">☰ Filtres</button>
-    
+
+    <!-- Nouveau bouton pour la route -->
     <div class="filters-panel" id="filtersPanel">
-        <div class="filters-header">
-            Filtres
-            <button class="close-btn" onclick="toggleFilters()">×</button>
+      <button class="route-btn" id="routeToggleBtn">🗺️ Afficher Route</button>
+
+      <div class="filters-header">
+        Filtres
+        <button class="close-btn" onclick="toggleFilters()">×</button>
+      </div>
+
+      <!-- Nouvelle section pour la route -->
+      <div class="filter-section">
+        <div class="filter-title route">Route</div>
+        <div class="filter-option">
+          <input type="checkbox" id="show-route" checked />
+          <label for="show-route"
+            >Afficher la route Andoharanofotsy - Analakely</label
+          >
+        </div>
+        <div
+          style="margin-top: 8px; font-size: 12px; color: #666"
+          id="routeInfo"
+        >
+          Chargement des informations de la route...
+        </div>
+      </div>
+
+      <!-- Filtre par nom de station -->
+      <div class="filter-section">
+        <div class="filter-title search">Rechercher une station</div>
+        <input
+          type="text"
+          class="search-input"
+          id="stationSearch"
+          placeholder="Tapez le nom de la station..."
+        />
+      </div>
+
+      <!-- Opérateurs -->
+      <div class="filter-section">
+        <div class="filter-title operator">Opérateurs</div>
+
+        <div class="filter-option">
+          <input type="checkbox" id="operator-Jovena" />
+          <label for="operator-Jovena">Jovena</label>
         </div>
 
-        <!-- Filtre par nom de station -->
-        <div class="filter-section">
-            <div class="filter-title search">Rechercher une station</div>
-            <input 
-                type="text" 
-                class="search-input" 
-                id="stationSearch" 
-                placeholder="Tapez le nom de la station..."
-                oninput="filterByStationName()"
-            >
+        <div class="filter-option">
+          <input type="checkbox" id="operator-Galana" />
+          <label for="operator-Galana">Galana</label>
         </div>
 
-        <!-- Services & Commodités -->
-        <div class="filter-section">
-            <div class="filter-title services">Services & Commodités</div>
-            
-            <div class="filter-option">
-                <input type="checkbox" id="gonflage" onchange="applyFilters()">
-                <label for="gonflage">Gonflage</label>
-            </div>
-            
-            <div class="filter-option">
-                <input type="checkbox" id="remplacement-gaz" onchange="applyFilters()">
-                <label for="remplacement-gaz">Remplacement de bouteilles de gaz Propane</label>
-            </div>
-            
-            <div class="filter-option">
-                <input type="checkbox" id="lavage" onchange="applyFilters()">
-                <label for="lavage">Lavage</label>
-            </div>
-            
-            <div class="filter-option">
-                <input type="checkbox" id="alimentation" onchange="applyFilters()">
-                <label for="alimentation">Alimentation</label>
-            </div>
-            
-            <div class="filter-option">
-                <input type="checkbox" id="carte-carburant" onchange="applyFilters()">
-                <label for="carte-carburant">Carte Carburant</label>
-            </div>
-            
+        <div class="filter-option">
+          <input type="checkbox" id="operator-Total" />
+          <label for="operator-Total">Total</label>
         </div>
 
-        <!-- Type de carburant -->
-        <div class="filter-section">
-            <div class="filter-title fuel">Type de carburant</div>
-            
-            <div class="filter-option">
-                <input type="checkbox" id="super-extra" checked onchange="applyFilters()">
-                <label for="super-extra"> Super Extra</label>
-            </div>
-            
-            <div class="filter-option">
-                <input type="checkbox" id="diesel" checked onchange="applyFilters()">
-                <label for="diesel"> Diesel</label>
-            </div>
+        <div class="filter-option">
+          <input type="checkbox" id="operator-Shell" />
+          <label for="operator-Shell">Shell</label>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="filter-section">
+        <div class="filter-title services">Services</div>
+
+        <div class="filter-option">
+          <input type="checkbox" id="service-service_station" />
+          <label for="service-service_station">Station-service</label>
+        </div>
+      </div>
+
+      <!-- Type de carburant -->
+      <div class="filter-section">
+        <div class="filter-title fuel">Type de carburant</div>
+
+        <div class="filter-option">
+          <input type="checkbox" id="fuel-essence" />
+          <label for="fuel-essence">Essence</label>
         </div>
 
-        <!-- Actuellement ouvert -->
-        <div class="filter-section">
-            <div class="filter-title hours">Actuellement ouvert</div>
-            
-            <div class="filter-option">
-                <input type="checkbox" id="actuellement-ouvert" onchange="applyFilters()">
-                <label for="actuellement-ouvert">Actuellement ouvert</label>
-            </div>
-            
-            <div class="filter-option">
-                <input type="checkbox" id="shop" onchange="applyFilters()">
-                <label for="shop">Shop</label>
-            </div>
-            
-            <div class="filter-option">
-                <input type="checkbox" id="forecourt" onchange="applyFilters()">
-                <label for="forecourt">Forecourt</label>
-            </div>
+        <div class="filter-option">
+          <input type="checkbox" id="fuel-gasoil" />
+          <label for="fuel-gasoil">Gasoil</label>
         </div>
+      </div>
+
+      <!-- Horaires -->
+      <div class="filter-section">
+        <div class="filter-title hours">Horaires</div>
+
+        <div class="filter-option">
+          <input type="checkbox" id="hour-6h-22h" />
+          <label for="hour-6h-22h">6h-22h</label>
+        </div>
+      </div>
+
+      <!-- Bouton pour effacer tous les filtres -->
+      <div class="filter-section">
+        <button
+          id="clearFilters"
+          onclick="clearAllFilters()"
+          style="
+            width: 100%;
+            padding: 10px;
+            background: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+          "
+        >
+          Effacer tous les filtres
+        </button>
+      </div>
     </div>
 
     <div id="map"></div>
 
     <script type="module" src="js/app.js"></script>
 
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const routeBtn = document.getElementById("routeToggleBtn");
+
+        const waitForApp = setInterval(() => {
+          if (
+            window.app &&
+            typeof window.app.toggleRouteDisplay === "function"
+          ) {
+            clearInterval(waitForApp);
+
+            // Ajoute le gestionnaire d'événement proprement
+            let routeVisible = true;
+
+            routeBtn.addEventListener("click", () => {
+              routeVisible = !routeVisible;
+              window.app.toggleRouteDisplay(routeVisible);
+
+              // UI update
+              routeBtn.textContent = routeVisible
+                ? "🗺️ Masquer Route"
+                : "🗺️ Afficher Route";
+              routeBtn.style.backgroundColor = routeVisible
+                ? "#f44336"
+                : "#4CAF50";
+              const checkbox = document.getElementById("show-route");
+              if (checkbox) checkbox.checked = routeVisible;
+            });
+          }
+        }, 100); // Vérifie toutes les 100ms
+
+        // Timeout fail-safe après 10s
+        setTimeout(() => clearInterval(waitForApp), 10000);
+      });
+    </script>
+
     <!-- API Google Maps -->
     <script
-        src="https://cdn.jsdelivr.net/gh/somanchiu/Keyless-Google-Maps-API@v7.0/mapsJavaScriptAPI.js" 
-        async defer>
+      src="https://cdn.jsdelivr.net/gh/somanchiu/Keyless-Google-Maps-API@v7.0/mapsJavaScriptAPI.js"
+      async
+      defer
+    ></script>
+
+    <script>
+      let routeVisible = true;
+
+      function toggleFilters() {
+        const panel = document.getElementById("filtersPanel");
+        panel.classList.toggle("hidden");
+      }
+
+      function clearAllFilters() {
+        // Cette fonction sera connectée au FilterManager via les modules
+        if (window.filterManager) {
+          window.filterManager.clearAllFilters();
+        }
+      }
+
+      function testRoute() {
+        console.log("Test de la route...");
+        if (window.app) {
+          window.app.debugRoute();
+
+          // Tester l'API directement
+          fetch("http://localhost:3000/api/route")
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Données de route depuis API:", data);
+            })
+            .catch((error) => {
+              console.error("Erreur API route:", error);
+            });
+        }
+      }
+
+      function toggleRoute() {
+        console.log("toggleRoute appelé, état actuel:", routeVisible);
+
+        routeVisible = !routeVisible;
+        const btn = document.getElementById("routeToggleBtn");
+        const checkbox = document.getElementById("show-route");
+
+        // Mettre à jour l'interface
+        if (routeVisible) {
+          btn.textContent = "🗺️ Masquer Route";
+          btn.style.backgroundColor = "#f44336";
+          if (checkbox) checkbox.checked = true;
+        } else {
+          btn.textContent = "🗺️ Afficher Route";
+          btn.style.backgroundColor = "#4CAF50";
+          if (checkbox) checkbox.checked = false;
+        }
+
+        // Appeler la méthode de l'app
+        if (window.app) {
+          window.app.toggleRouteDisplay(routeVisible);
+        } else {
+          console.error("window.app non disponible");
+        }
+
+        console.log("État après toggle:", routeVisible);
+      }
     </script>
-</body>
+
+    <style>
+      .route-btn {
+        position: fixed;
+        top: 60px;
+        left: 10px;
+        z-index: 1000;
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .route-btn:hover {
+        background: #45a049;
+      }
+
+      .filter-title.route::before {
+        content: "🗺️";
+        margin-right: 8px;
+      }
+
+      #routeInfo {
+        background: #f5f5f5;
+        padding: 8px;
+        border-radius: 4px;
+        margin-top: 8px;
+      }
+    </style>
+  </body>
 </html>

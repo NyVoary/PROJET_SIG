@@ -1,7 +1,9 @@
-cd frontend
+node 
+python
+
+backend :
+npm install 
+npm start
+
+frontend :
 python -m http.server
-
-npm install
-
-cd backend
-node server.js
