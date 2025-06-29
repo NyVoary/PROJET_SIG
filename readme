@@ -29,30 +29,32 @@ This project is a full-stack web application for visualizing gas stations and a 
 ## Project Structure
 
 ```
+
 readme
 backend/
-  .env.example
-  package.json
-  server.js
-  sql/
-    data.sql
-  utils/
-    export_stations.py
-    export_to_sql.py
-    exporty_road.py
-    sender_to_psql/
-      route.py
-      station.py
+.env.example
+package.json
+server.js
+sql/
+data.sql
+utils/
+export\_stations.py
+export\_to\_sql.py
+export\_route.py
+sender\_to\_psql/
+route.py
+station.py
 frontend/
-  index.html
-  css/
-    style.css
-  js/
-    api.js
-    app.js
-    filters.js
-    map.js
-```
+index.html
+css/
+style.css
+js/
+api.js
+app.js
+filters.js
+map.js
+
+````
 
 ---
 
@@ -61,9 +63,9 @@ frontend/
 ### 1. Clone the Repository
 
 ```sh
-git clone <your-repo-url>
-cd <project-folder>
-```
+git clone <your-repo-url>   # Replace with your repository URL
+cd <project-folder>         # Folder created by git clone
+````
 
 ### 2. Setup the Database
 
@@ -84,22 +86,24 @@ cp .env.example .env  # Edit .env if needed
 npm install
 npm start
 ```
+
 The backend will run on [http://localhost:3000](http://localhost:3000).
 
 ### 4. Frontend Setup
 
+Start a simple HTTP server:
+
 ```sh
-cd frontend
 python -m http.server
 ```
-The frontend will be available at [http://localhost:8000](http://localhost:8000).
 
-Or 
+or
 
 ```sh
-cd frontend
 python3 -m http.server
 ```
+
+The frontend will be available at [http://localhost:8000](http://localhost:8000).
 
 ### 5. Open in Browser
 
@@ -111,26 +115,26 @@ Visit [http://localhost:8000](http://localhost:8000) and interact with the map a
 
 ### Frontend
 
-- [`index.html`](frontend/index.html): Main HTML file, includes map and filter panel.
-- [`css/style.css`](frontend/css/style.css): Styles for layout and UI.
-- [`js/app.js`](frontend/js/app.js): App initialization, loads stations and route, manages UI.
-- [`js/api.js`](frontend/js/api.js): Handles API requests to backend.
-- [`js/filters.js`](frontend/js/filters.js): Manages filter state and UI.
-- [`js/map.js`](frontend/js/map.js): Google Maps logic, markers, route polyline.
+- [`index.html`](./frontend/index.html): Main HTML file, includes map and filter panel.
+- [`css/style.css`](./frontend/css/style.css): Styles for layout and UI.
+- [`js/app.js`](./frontend/js/app.js): App initialization, loads stations and route, manages UI.
+- [`js/api.js`](./frontend/js/api.js): Handles API requests to backend.
+- [`js/filters.js`](./frontend/js/filters.js): Manages filter state and UI.
+- [`js/map.js`](./frontend/js/map.js): Google Maps logic, markers, route polyline.
 
 ### Backend
 
-- [`server.js`](backend/server.js): Express server, REST API for stations and route.
-- [`sql/data.sql`](backend/sql/data.sql): Database schema and sample data.
-- [`package.json`](backend/package.json): Node.js dependencies and scripts.
+- [`server.js`](./backend/server.js): Express server, REST API for stations and route.
+- [`sql/data.sql`](./backend/sql/data.sql): Database schema and sample data.
+- [`package.json`](./backend/package.json): Node.js dependencies and scripts.
 
 ### Data Utilities
 
-- [`export_stations.py`](backend/utils/export_stations.py): Export stations to CSV, enrich with OSM coordinates.
-- [`export_to_sql.py`](backend/utils/export_to_sql.py): Convert CSV to SQL insert statements.
-- [`exporty_road.py`](backend/utils/exporty_road.py): Export route data with OSM coordinates.
-- [`sender_to_psql/station.py`](backend/utils/sender_to_psql/station.py): Import stations from CSV to DB.
-- [`sender_to_psql/route.py`](backend/utils/sender_to_psql/route.py): Import route from CSV to DB.
+- [`export_stations.py`](./backend/utils/export_stations.py): Export stations to CSV, enrich with OSM coordinates.
+- [`export_to_sql.py`](./backend/utils/export_to_sql.py): Convert CSV to SQL insert statements.
+- [`export_route.py`](./backend/utils/export_route.py): Export route data with OSM coordinates.
+- [`sender_to_psql/station.py`](./backend/utils/sender_to_psql/station.py): Import stations from CSV to DB.
+- [`sender_to_psql/route.py`](./backend/utils/sender_to_psql/route.py): Import route from CSV to DB.
 
 ---
 
@@ -148,19 +152,7 @@ Visit [http://localhost:8000](http://localhost:8000) and interact with the map a
 
 ## Environment Variables
 
-See [`backend/.env.example`](backend/.env.example) for configuration options.
-
----
-
-## License
-
-MIT
-
----
-
-## Author
-
-Your Name
+See [`backend/.env.example`](./backend/.env.example) for configuration options.
 
 ---
 
@@ -187,5 +179,3 @@ In the backend folder, you can use the following npm scripts:
 - `npm run build`: Build the frontend (if using a build step).
 - `npm run lint`: Run ESLint for code linting.
 - `npm test`: Run tests with Jest.
-
-Adjust these scripts based on your actual setup and needs.
