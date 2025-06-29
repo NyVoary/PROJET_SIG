@@ -1,9 +1,191 @@
-node 
-python
+# Gas Stations & Route Map Web Application
 
-backend :
-npm install 
+This project is a full-stack web application for visualizing gas stations and a main route on a map of Antananarivo, Madagascar. It allows users to filter stations by operator, search by name, and view a main route with metadata, all on an interactive map.
+
+---
+
+## Features
+
+- **Interactive Map**: View all gas stations as markers and the main route as a polyline.
+- **Filtering & Search**: Filter stations by operator (Jovena, Galana, Total, Shell) and search by name.
+- **Route Info Panel**: See route metadata (start/end city, number of points, distance, OSM segments).
+- **Toggle Route Display**: Show/hide the main route.
+- **Responsive UI**: Works on desktop and mobile.
+- **Data Utilities**: Import/export stations and route data, enrich with OSM/Overpass API.
+
+---
+
+## Technologies Used
+
+- **Frontend**: HTML, CSS, JavaScript (ES Modules), Google Maps JavaScript API
+- **Backend**: Node.js, Express, PostgreSQL, PostGIS
+- **Database**: PostgreSQL with PostGIS extension
+- **Data Utilities**: Python 3 (requests, psycopg2, csv)
+- **Testing**: Jest, Supertest (backend)
+- **Other**: dotenv, cors, helmet (backend security/config)
+
+---
+
+## Project Structure
+
+```
+readme
+backend/
+  .env.example
+  package.json
+  server.js
+  sql/
+    data.sql
+  utils/
+    export_stations.py
+    export_to_sql.py
+    exporty_road.py
+    sender_to_psql/
+      route.py
+      station.py
+frontend/
+  index.html
+  css/
+    style.css
+  js/
+    api.js
+    app.js
+    filters.js
+    map.js
+```
+
+---
+
+## How to Run
+
+### 1. Clone the Repository
+
+```sh
+git clone <your-repo-url>
+cd <project-folder>
+```
+
+### 2. Setup the Database
+
+- Install PostgreSQL and PostGIS.
+- Create the database and tables:
+
+```sh
+psql -U postgres -f backend/sql/data.sql
+```
+
+- (Optional) Use the Python utilities in `backend/utils/` to import/export data.
+
+### 3. Backend Setup
+
+```sh
+cd backend
+cp .env.example .env  # Edit .env if needed
+npm install
 npm start
+```
+The backend will run on [http://localhost:3000](http://localhost:3000).
 
-frontend :
+### 4. Frontend Setup
+
+```sh
+cd frontend
 python -m http.server
+```
+The frontend will be available at [http://localhost:8000](http://localhost:8000).
+
+Or 
+
+```sh
+cd frontend
+python3 -m http.server
+```
+
+### 5. Open in Browser
+
+Visit [http://localhost:8000](http://localhost:8000) and interact with the map and filters.
+
+---
+
+## Main Components
+
+### Frontend
+
+- [`index.html`](frontend/index.html): Main HTML file, includes map and filter panel.
+- [`css/style.css`](frontend/css/style.css): Styles for layout and UI.
+- [`js/app.js`](frontend/js/app.js): App initialization, loads stations and route, manages UI.
+- [`js/api.js`](frontend/js/api.js): Handles API requests to backend.
+- [`js/filters.js`](frontend/js/filters.js): Manages filter state and UI.
+- [`js/map.js`](frontend/js/map.js): Google Maps logic, markers, route polyline.
+
+### Backend
+
+- [`server.js`](backend/server.js): Express server, REST API for stations and route.
+- [`sql/data.sql`](backend/sql/data.sql): Database schema and sample data.
+- [`package.json`](backend/package.json): Node.js dependencies and scripts.
+
+### Data Utilities
+
+- [`export_stations.py`](backend/utils/export_stations.py): Export stations to CSV, enrich with OSM coordinates.
+- [`export_to_sql.py`](backend/utils/export_to_sql.py): Convert CSV to SQL insert statements.
+- [`exporty_road.py`](backend/utils/exporty_road.py): Export route data with OSM coordinates.
+- [`sender_to_psql/station.py`](backend/utils/sender_to_psql/station.py): Import stations from CSV to DB.
+- [`sender_to_psql/route.py`](backend/utils/sender_to_psql/route.py): Import route from CSV to DB.
+
+---
+
+## API Endpoints
+
+- `GET /api/stations` — All stations
+- `GET /api/stations/search` — Filtered stations
+- `GET /api/stations/filters` — Available filter values
+- `GET /api/stations/:id` — Station details
+- `GET /api/route` — All route points
+- `GET /api/route/info` — Route metadata
+- `GET /api/health` — Health check
+
+---
+
+## Environment Variables
+
+See [`backend/.env.example`](backend/.env.example) for configuration options.
+
+---
+
+## License
+
+MIT
+
+---
+
+## Author
+
+Your Name
+
+---
+
+## Acknowledgements
+
+- OpenStreetMap & Overpass API for geodata
+- Google Maps JavaScript API
+
+---
+
+## Notes
+
+- Make sure PostgreSQL and PostGIS are installed and running.
+- The backend expects the database to be named `stations_service` by default (see `.env`).
+- For development, you can use `npm run dev` in the backend for auto-reload.
+
+---
+
+## Development Scripts
+
+In the backend folder, you can use the following npm scripts:
+
+- `npm run dev`: Start the server with auto-reload (nodemon).
+- `npm run build`: Build the frontend (if using a build step).
+- `npm run lint`: Run ESLint for code linting.
+- `npm test`: Run tests with Jest.
+
+Adjust these scripts based on your actual setup and needs.
